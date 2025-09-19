@@ -1,3 +1,4 @@
+// MapView.jsx
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents, CircleMarker } from 'react-leaflet';
 import { motion } from 'framer-motion';
@@ -6,12 +7,7 @@ import {
   Pause, 
   RotateCcw, 
   Layers, 
-  Clock,
-  AlertTriangle,
-  Droplets,
-  Wind,
-  Zap,
-  MapPin
+  Clock
 } from 'lucide-react';
 import { mockIncidents } from '../services/mockData';
 import 'leaflet/dist/leaflet.css';
@@ -26,9 +22,9 @@ L.Icon.Default.mergeOptions({
 });
 
 const MapView = () => {
-  const [incidents] = useState(mockIncidents);
+  const [incidents, setIncidents] = useState(mockIncidents);
   const [selectedIncident, setSelectedIncident] = useState(null);
-  const [timeIndex, setTimeIndex] = useState(incidents.length - 1);
+  const [timeIndex, setTimeIndex] = useState(mockIncidents.length - 1);
   const [isPlaying, setIsPlaying] = useState(false);
   const [layers, setLayers] = useState({
     hotspots: true,
@@ -36,6 +32,28 @@ const MapView = () => {
     verified: true,
     unverified: true
   });
+
+  useEffect(() => {
+    const eventSource = new EventSource(" "); //endpoint 
+
+    eventSource.onmessage = (event) => {
+      try {
+        const newIncident = JSON.parse(event.data);
+        setIncidents((prev) => [...prev, newIncident]);
+      } catch (err) {
+        console.error("Failed to parse SSE event:", err);
+      }
+    };
+
+    eventSource.onerror = (err) => {
+      console.error("SSE error:", err);
+      eventSource.close();
+    };
+
+    return () => {
+      eventSource.close();
+    };
+  }, []);
 
   // Timeline replay effect
   useEffect(() => {

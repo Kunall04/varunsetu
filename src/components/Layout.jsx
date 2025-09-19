@@ -57,7 +57,7 @@ const Layout = () => {
             <Menu size={20} />
           </button>
           <h1 className="text-xl font-bold text-white">
-            Varunsetu - Bridge of Safety
+            Varunsetu - Bridge of Safety.
           </h1>
         </div>
 
