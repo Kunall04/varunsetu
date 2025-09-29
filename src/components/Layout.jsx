@@ -48,7 +48,7 @@ const Layout = () => {
   return (
     <div className="h-screen bg-black text-white overflow-hidden">
       {/* Header */}
-      <header className="h-16 bg-primary-800/50 backdrop-blur-md border-b border-white/10 flex items-center justify-between px-4 z-50">
+      <header className="h-16 bg-primary-800/50 backdrop-blur-md border-b border-white/10 flex items-center justify-start px-4 z-50">
         <div className="flex items-center space-x-4">
           <button
             onClick={toggleLeftSidebar}
@@ -57,11 +57,12 @@ const Layout = () => {
             <Menu size={20} />
           </button>
           <h1 className="text-xl font-bold text-white">
-            Varunsetu - Bridge of Safety.
+            Varunsetu - Bridge of Safety for Indian Coasts
           </h1>
         </div>
+        <div className="flex-1" />
 
-        <nav className="flex items-center space-x-2">
+        <nav className="flex items-center space-x-2 mr-2">
           <button
             onClick={() => setActiveTab('dashboard')}
             className={`px-4 py-2 rounded-lg transition-colors flex items-center space-x-2 ${

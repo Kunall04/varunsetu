@@ -51,8 +51,8 @@ const InsightsPanel = () => {
       {/* Header */}
       <div className="p-4 border-b border-white/10">
         <h2 className="text-lg font-semibold text-white mb-4 flex items-center">
-          <Brain className="mr-2" size={20} />
-          ML Insights & Tools
+          {/* <Brain className="mr-2" size={20} /> */}
+          Real-Time Validated Data
         </h2>
       </div>
 
@@ -122,7 +122,7 @@ const InsightsPanel = () => {
         </motion.div>
 
         {/* Trending Keywords */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
@@ -143,7 +143,7 @@ const InsightsPanel = () => {
               </span>
             ))}
           </div>
-        </motion.div>
+        </motion.div> */}
 
         {/* Regional Impact */}
         <motion.div
